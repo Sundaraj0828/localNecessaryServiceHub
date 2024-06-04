@@ -1,0 +1,206 @@
+{% extends "base2.html" %}
+{% block customer_home %}
+
+{% set username = session['username'] %}
+{% set first_name = session['first_name'] %}
+{% set user_type = session['user_type'] %}
+{% set user_location = session['address'] %}
+
+<main class="main-content mt-1 border-radius-lg">
+  <div class="section position-relative">
+    <div class="container">
+       <div class="row pt-7">
+          
+          <div class="col-lg-12 col-md-12">
+             <div class="d-flex">
+                <div class="me-auto">                            
+                 <h5 class="text-uppercase mb-0 ms-1">Welcome, {{first_name}}</h5>
+                 <p class=" mb-0 ms-1">{{user_location}}</p>
+                </div>
+                <div class="ms-auto d-flex bg bg-dark  card">
+                 <div class="card-body d-flex">
+                 <h5 id = "clock" onload="currentTime()" class="me-4 mt-0 pt-2 pb-0 text-secondary  "></h5>
+                 <h3 class="text-light"><i class="fa fa-clock"></i></h3>
+             </div>
+                </div>
+             </div>
+             <div class="row mt-4">
+                 <div class="col-lg-4 col-md-4 mt-4 mt-sm-0">
+                     <div class="card bg-gradient-dark move-on-hover">
+                        <div class="card-body">
+                           <div class="d-flex">
+                              <h5 class="mb-0 text-white">Services Started</h5>
+                              <div class="ms-auto">
+                                 <h1 class="text-white text-end mb-0 mt-n2">4</h1>
+                                 <p class="text-sm mb-0 text-white">services</p>
+                              </div>
+                           </div>
+                           <p class="text-white mb-0">Newspaper</p>
+                           <p class="text-white mb-0">Milk</p>
+                           <p class="mb-0 text-white">Fresh Fish</p>
+                           <p class="mb-0 text-white">Chicken Market</p>
+
+                        </div>
+                        <a href="javascript:;" class="w-100 text-center py-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show More">
+                        <i class="fas fa-chevron-down text-white"></i>
+                        </a>
+                     </div>
+                     <div class="card move-on-hover mt-4">
+                         <div class="card-header border-bottom">
+                             <h5>Service Provider info</h5>
+                             <small>in Baniapat area</small>
+                         </div>
+                        <div class="card-body">
+                           <div class="d-flex">
+                              <p class="mb-0">Swayam Saswat (Milk)</p>
+                              <a href="javascript:;" class="ms-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Contact Number">
+                              1112223334
+                              </a>
+                           </div>
+                           <hr class="horizontal dark">
+                           <div class="d-flex">
+                             <p class="mb-0">Bibeka (Laundry)</p>
+                             <a href="javascript:;" class="ms-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Contact Number">
+                             9997772220
+                             </a>
+                          </div>
+                          <hr class="horizontal dark">
+                           <div class="d-flex">
+                             <p class="mb-0">Ipsita (Kambali Bai)</p>
+                             <a href="javascript:;" class="ms-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Contact Number">
+                             9454545460
+                             </a>
+                          </div>
+                          
+                          <hr class="horizontal dark">
+                           <div class="d-flex">
+                             <p class="mb-0">Biswajit (News Paper)</p>
+                             <a href="javascript:;" class="ms-auto" data-bs-toggle="tooltip" data-bs-placement="top" title="Contact Number">
+                             8978897856
+                             </a>
+                          </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-4 col-md-4 mt-4 mt-sm-0">
+                     <div class="card bg bg-gradient-primary move-on-hover ">
+                        <div class="cursor-pointer">                                      
+                           <div class="card-body">
+                              <h4 class="mb-0 text-white">Dairy Products</h4>
+                              <p class="text-sm text-light">vendors or individuals near your area</p>
+                              <div class="bg bg-dark rounded p-2 mb-2">
+                                 <h5 class="text-white">Manoj Dokan</h5>
+                                 <small class="text-white">Contact : +91 0123456789</small>
+                                 <h6 class="text-white">Milk, Paneer, Curd (Pragati, Milky Moo)</h6>
+                             </div>                                            
+                             <div class="bg bg-dark rounded p-2 mb-2">
+                                 <h5 class="text-white">Omfed Parlour</h5>
+                                 <small class="text-white">Contact : +91 9876543210</small>
+                                 <h6 class="text-white">Milk, Curd, Butter Milk (Omfed)</h6>
+                             </div>                                            
+                             <div class="bg bg-dark rounded p-2 mb-2">
+                                 <h5 class="text-white">Swayam Saswat</h5>
+                                 <small class="text-white">Contact : +91 1112223334</small>
+                                 <h6 class="text-white">Milk (Local)</h6>
+                             </div>
+
+                             
+                           </div>
+                        </div>
+                     </div>
+                     <!-- <div class="card move-on-hover mt-4 mb-4 mb-md-0 mt-md-4">
+                        <div class="card-body">
+                           <div class="d-flex">
+                              <p class="my-auto">Messages</p>
+                              <div class="ms-auto">
+                                 <div class="avatar-group">
+                                    <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="2 New Messages">
+                                    <img alt="Image placeholder" src="img/team-1.jpg">
+                                    </a>
+                                    <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="1 New Message">
+                                    <img alt="Image placeholder" src="img/team-2.jpg">
+                                    </a>
+                                    <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="13 New Messages">
+                                    <img alt="Image placeholder" src="img/team-3.jpg">
+                                    </a>
+                                    <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="7 New Messages">
+                                    <img alt="Image placeholder" src="img/team-4.jpg">
+                                    </a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div> -->
+                     
+                  </div>
+                <div class="col-lg-4 col-md-4">
+                   <div class="card move-on-hover overflow-hidden">
+                     <div class="card-header border-bottom">
+                         <h5>Opening Times</h5>
+                         <small>Opening times of nearest needy vendors</small>
+                     </div>
+                      <div class="card-body">
+                         <div class="d-flex">
+                            <h6 class="mb-0 me-3">08:00 AM</h6>
+                            <h6 class="mb-0">Apollo Pharmacy
+                               <!-- <small class="text-secondary font-weight-normal">Opening</small> -->
+                            </h6>
+                         </div>
+                         <hr class="horizontal dark">
+                         <div class="d-flex">
+                            <h6 class="mb-0 me-3">09:30 AM</h6>
+                            <h6 class="mb-0">Gym India
+                               <small class="text-secondary font-weight-normal">New</small>
+                            </h6>
+                         </div>
+                         <hr class="horizontal dark">
+                         <div class="d-flex">
+                            <h6 class="mb-0 me-3">10:00 AM</h6>
+                            <h6 class="mb-0">The Tea Factory<br />
+                               <!-- <small class="text-secondary font-weight-normal">Zoom</small> -->
+                            </h6>
+                         </div>
+                         <hr class="horizontal dark">
+                         <div class="d-flex">
+                            <h6 class="mb-0 me-3">8:30 AM</h6>
+                            <h6 class="mb-0">Food Traffic
+                               <small class="text-secondary font-weight-normal">Only Breakfst</small>
+                            </h6>
+                         </div>
+                      </div>
+                      <a href="javascript:;" class="bg-gray-100 w-100 text-center py-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show More">
+                      <i class="fas fa-chevron-down text-primary"></i>
+                      </a>
+                   </div>
+                   <div class="card move-on-hover mt-4 mb-4 mb-md-0 mt-md-4">
+                     <div class="card-body">
+                        <div class="d-flex">
+                           <p class="my-auto">Messages</p>
+                           <div class="ms-auto">
+                              <div class="avatar-group">
+                                 <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="2 New Messages">
+                                 <img alt="Image placeholder" src="img/team-1.jpg">
+                                 </a>
+                                 <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="1 New Message">
+                                 <img alt="Image placeholder" src="img/team-2.jpg">
+                                 </a>
+                                 <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="13 New Messages">
+                                 <img alt="Image placeholder" src="img/team-3.jpg">
+                                 </a>
+                                 <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="7 New Messages">
+                                 <img alt="Image placeholder" src="img/team-4.jpg">
+                                 </a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                </div>
+                
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+{% endblock %}

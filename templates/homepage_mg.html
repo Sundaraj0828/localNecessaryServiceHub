@@ -1,0 +1,311 @@
+{% extends "base2.html" %}
+{% block management_home %}
+
+{% set username = session['username'] %}
+{% set first_name = session['first_name'] %}
+{% set user_type = session['user_type'] %}
+{% set user_location = session['address'] %}
+
+<main class="main-content mt-1 border-radius-lg">
+    <div class="section position-relative">
+       <div class="container">
+          <div class="row pt-7">
+             
+             <div class="col-lg-12 col-md-12">
+                <div class="d-flex">
+                   <div class="me-auto">                            
+                    <h5 class="text-uppercase mb-0 ms-1">Welcome, {{first_name}}</h5>
+                    <p class=" mb-0 ms-1">{{user_location}}</p>
+                   </div>
+                   <div class="ms-auto d-flex bg bg-dark  card">
+                    <div class="card-body d-flex">
+                    <h5 id = "clock" onload="currentTime()" class="me-4 mt-0 pt-2 pb-0 text-secondary  "></h5>
+                    <h3 class="text-light"><i class="fa fa-clock"></i></h3>
+                </div>
+                   </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-lg-4 col-md-4 mt-4 mt-sm-0">
+                        <div class="card bg-gradient-dark move-on-hover">
+                           <div class="card-body">
+                              <div class="d-flex">
+                                 <div class="">
+                                    <h5 class="mb-0 text-white">Registered Services</h5>
+                                    <small>Vendors/Individual services</small>
+                                 </div>									 
+                                 <div class="ms-auto">
+                                    <h1 class="text-white text-end mb-0 mt-n2">27</h1>
+                                    <p class="text-sm mb-0 text-white">services</p>
+                                 </div>
+                                 
+                              </div>
+                              <p class="text-white mb-0">A1 Newspaper Agency</p>
+                              <p class="text-white mb-0">Local Dairy Product</p>
+                              <p class="mb-0 text-white">Hemanta Fresh Fish</p>
+                              <p class="mb-0 text-white">MaRish Chicken </p>
+                              <p class="mb-0 text-white">Saroj Egg Distributor</p>
+                              <p class="mb-0 text-white">Pragyan Beauty Parlour</p>
+                              <p class="mb-0 text-white">Liquid Gym</p>
+                              <p class="mb-0 text-white">Ramu Laundry Service</p>
+                              <p class="text-white mb-0">Omfed parlour</p>
+                              <p class="mb-0 text-white">Debyani Tailor</p>
+                              <p class="mb-0 text-white">Manoj Grocery Store</p>
+                              <p class="mb-0 text-white">Apollo Pharmacy Store</p>
+                              <p class="mb-0 text-white">Avinav Homeo Clinic</p>
+
+                           </div>
+                           <a href="javascript:;" class="w-100 text-center py-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show More">
+                           <i class="fas fa-chevron-down text-white"></i>
+                           </a>
+                        </div>
+                        <div class="card move-on-hover mt-4">
+                            <div class="card-header border-bottom mb-0 pb-2">
+                                <h5>Raised Issues</h5>
+                            </div>
+                           <div class="card-body">
+                              <div class="row ">
+                                <div class="col-10">
+                                    <small>20-Mar-2023</small>
+                                    <h6 class="mb-0">Simran Kumari</h6>
+                                    <p>Ticket No. - LNSH-P-35124</p>
+                                </div>    
+                                <div class="col-2 text-center px-0">											
+                                    <button class="float-end btn btn-icon-only btn-rounded btn-warning btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-eye"></i></button>
+                                </div> 
+                              </div>
+                              <hr class="horizontal dark mt-0">
+                              <div class="row ">
+                                <div class="col-10">
+                                    <small>20-Mar-2023</small>
+                                    <h6 class="mb-0">Pragyan Naik</h6>
+                                    <p>Ticket No. - LNSH-X-64582</p>
+                                </div>    
+                                <div class="col-2 text-center px-0">											
+                                    <button class="float-end btn btn-icon-only btn-rounded btn-warning btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-eye"></i></button>
+                                </div> 
+                              </div>
+                              <hr class="horizontal dark mt-0">
+                              <div class="row ">
+                                <div class="col-10">
+                                    <small>20-Mar-2023</small>
+                                    <h6 class="mb-0">Lalit Kumar</h6>
+                                    <p>Ticket No. - LNSH-M-51452</p>
+                                </div>    
+                                <div class="col-2 text-center px-0">											
+                                    <button class="float-end btn btn-icon-only btn-rounded btn-warning btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-eye"></i></button>
+                                </div> 
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-4 mt-4 mt-sm-0">
+                        <div class="card bg bg-gradient-primary move-on-hover ">
+                           <div class="cursor-pointer">                                      
+                              <div class="card-body">
+                                 <h4 class="mb-0 text-white">Add Service Category</h4>
+                                 <p class="text-sm text-light">Add different vendors or individual srvice Category </p>
+                                 
+                                
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group mb-0">
+                                            <form action="{{url_for('add_category')}}" method="post">
+                                                <label for="example-text-input" class="form-control-label">Name of the Category</label>
+                                                <input name="category" class="form-control mb-3" type="text" placeholder="">
+                                                <button type="submit" class="btn btn-dark btn-sm ms-auto">Add Category</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="col-12">
+                                        {% for i in cat %}
+                                        <div class="card rounded bg bg-gradient-dark mb-3">
+                                            <div class="card-body p-2">
+                                              <div class="row">
+                                                <div class="col-9">
+                                                  <div class="numbers">
+                                                    <h6 class="mb-0 text-light">{{i['category_name']}}</h6>
+                                                    
+                                                  </div>
+                                                </div>
+                                                <div class="col-3  text-end mr-0">
+                                                    <a href="{{url_for('delete_category', cid = i['category_id'])}}" class="btn btn-icon-only btn-rounded btn-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center "><i class="fas fa-times"></i></a>
+                                                    
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>  
+                                          {% endfor %}
+                                          
+                                    </div>
+                                </div>
+                                
+                                
+                              </div>
+                           </div>
+                        </div>
+                        <!-- <div class="card move-on-hover mt-4 mb-4 mb-md-0 mt-md-4">
+                           <div class="card-body">
+                              <div class="d-flex">
+                                 <p class="my-auto">Messages</p>
+                                 <div class="ms-auto">
+                                    <div class="avatar-group">
+                                       <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="2 New Messages">
+                                       <img alt="Image placeholder" src="img/team-1.jpg">
+                                       </a>
+                                       <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="1 New Message">
+                                       <img alt="Image placeholder" src="img/team-2.jpg">
+                                       </a>
+                                       <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="13 New Messages">
+                                       <img alt="Image placeholder" src="img/team-3.jpg">
+                                       </a>
+                                       <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="7 New Messages">
+                                       <img alt="Image placeholder" src="img/team-4.jpg">
+                                       </a>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div> -->
+                        
+                     </div>
+                   <div class="col-lg-4 col-md-4">
+                      <div class="card move-on-hover overflow-hidden">
+                        <div class="card-header border-bottom">
+                            <h5>Service Registration Requests</h5>
+                            <small>Pending registration requests from vendors and individual service provider</small>
+                        </div>
+                         <div class="card-body">
+                            <div class="row">
+                                <div class="col-10">
+                                    <p class="mb-0 me-3">15-Mar-2023</p>
+                                    <h6 class="mb-0">Tarini Fastfood
+                                        <!-- <small class="text-secondary font-weight-normal">Opening</small> -->
+                                    </h6>
+                                </div>
+                                <div class="col-2 text-end">
+                                    <button class="btn btn-icon-only btn-rounded btn-success btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-info"></i></button>
+                                                                            
+                                </div>
+                               
+                            </div>
+                            <hr class="horizontal dark">
+                            <div class="row">
+                                <div class="col-10">
+                                    <p class="mb-0 me-3">3-Mar-2023</p>
+                                    <h6 class="mb-0">Rohit Electrician
+                                        <!-- <small class="text-secondary font-weight-normal">Opening</small> -->
+                                    </h6>
+                                </div>
+                                <div class="col-2 text-end">
+                                    <button class="btn btn-icon-only btn-rounded btn-success btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-info"></i></button>
+                                                                            
+                                </div>
+                               
+                            </div>
+                            <hr class="horizontal dark">
+                            <div class="row">
+                                <div class="col-10">
+                                    <p class="mb-0 me-3">28-Feb-2023</p>
+                                    <h6 class="mb-0">Gym India
+                                        <!-- <small class="text-secondary font-weight-normal">Opening</small> -->
+                                    </h6>
+                                </div>
+                                <div class="col-2 text-end">
+                                    <button class="btn btn-icon-only btn-rounded btn-success btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-info"></i></button>
+                                                                            
+                                </div>
+                               
+                            </div>
+                            <hr class="horizontal dark">
+                            <div class="row">
+                                <div class="col-10">
+                                    <p class="mb-0 me-3">20-Mar-2023</p>
+                                    <h6 class="mb-0">Sahu Hotel
+                                        <!-- <small class="text-secondary font-weight-normal">Opening</small> -->
+                                    </h6>
+                                </div>
+                                <div class="col-2 text-end">
+                                    <button class="btn btn-icon-only btn-rounded btn-success btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-info"></i></button>
+                                                                            
+                                </div>
+                               
+                            </div>
+                            <hr class="horizontal dark">
+                            <div class="row">
+                                <div class="col-10">
+                                    <p class="mb-0 me-3">20-Feb-2023</p>
+                                    <h6 class="mb-0">Kamal Unisex Salon
+                                        <!-- <small class="text-secondary font-weight-normal">Opening</small> -->
+                                    </h6>
+                                </div>
+                                <div class="col-2 text-end">
+                                    <button class="btn btn-icon-only btn-rounded btn-success btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-info"></i></button>
+                                                                            
+                                </div>
+                               
+                            </div>
+                            <hr class="horizontal dark">
+                            <div class="row">
+                                <div class="col-10">
+                                    <p class="mb-0 me-3">20-Mar-2023</p>
+                                    <h6 class="mb-0">Patra Vegetables
+                                        <!-- <small class="text-secondary font-weight-normal">Opening</small> -->
+                                    </h6>
+                                </div>
+                                <div class="col-2 text-end">
+                                    <button class="btn btn-icon-only btn-rounded btn-success btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-info"></i></button>
+                                                                            
+                                </div>
+                               
+                            </div>
+                            <hr class="horizontal dark">
+                            <div class="row">
+                                <div class="col-10">
+                                    <p class="mb-0 me-3">20-Mar-2023</p>
+                                    <h6 class="mb-0">Jio Fiber
+                                        <!-- <small class="text-secondary font-weight-normal">Opening</small> -->
+                                    </h6>
+                                </div>
+                                <div class="col-2 text-end">
+                                    <button class="btn btn-icon-only btn-rounded btn-success btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-info"></i></button>
+                                                                            
+                                </div>
+                               
+                            </div>
+                         </div>
+                         <a href="javascript:;" class="bg-gray-100 w-100 text-center py-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show More">
+                         <i class="fas fa-chevron-down text-primary"></i>
+                         </a>
+                      </div>
+                      <!-- <div class="card move-on-hover mt-4 mb-4 mb-md-0 mt-md-4">
+                        <div class="card-body">
+                           <div class="d-flex">
+                              <p class="my-auto">Messages</p>
+                              <div class="ms-auto">
+                                 <div class="avatar-group">
+                                    <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="2 New Messages">
+                                    <img alt="Image placeholder" src="img/team-1.jpg">
+                                    </a>
+                                    <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="1 New Message">
+                                    <img alt="Image placeholder" src="img/team-2.jpg">
+                                    </a>
+                                    <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="13 New Messages">
+                                    <img alt="Image placeholder" src="img/team-3.jpg">
+                                    </a>
+                                    <a href="javascript:;" class="avatar avatar-sm border-0 rounded-circle" data-bs-toggle="tooltip" data-bs-placement="top" title="7 New Messages">
+                                    <img alt="Image placeholder" src="img/team-4.jpg">
+                                    </a>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div> -->
+                   </div>
+                   
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+
+{% endblock %}

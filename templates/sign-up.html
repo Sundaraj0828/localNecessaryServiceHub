@@ -1,0 +1,79 @@
+{% extends "core.html" %}
+{% block signup %}
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg position-absolute top-0 z-index-3 w-100 shadow-none my-3 navbar-transparent mt-4">
+    <div class="container justify-content-center text-white">
+       <a href="{{url_for('home')}}">
+        <h2 class="text-light">LNS HUB</h2> 
+      </a>
+       
+      
+    </div>
+  </nav>
+  <!-- End Navbar -->
+  <main class="main-content  mt-0">
+    <div class="page-header align-items-start min-vh-50 pt-5 pb-11 m-0 " style="background-image: url('https://c4.wallpaperflare.com/wallpaper/246/739/689/digital-digital-art-artwork-illustration-abstract-hd-wallpaper-preview.jpg'); background-position: top center;">
+      <span class="mask bg-gradient-dark opacity-8"></span>
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 text-center mx-auto">
+            <h1 class="text-white mb-2 mt-5">Welcome!</h1>
+            <p class="text-lead text-white">Use these awesome forms to login or create new account in your project for free.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row mt-lg-n10 mt-md-n11 mt-n10 justify-content-center">
+        <div class="col-xl-7 col-lg-8 col-md-10 mx-auto pb-5">
+          <div class="card z-index-0">
+            <div class="card-header text-center pt-4 pb-0">
+              <h5>Register Here</h5>
+            </div> 
+            <div class="card-body">
+              <form role="form" action="{{url_for('register')}}" method="post">
+                <div class="mb-3 d-flex">
+                  <input type="text" name="f_name" class="form-control me-2" placeholder="First Name" aria-label="First Name">
+                  <input type="text" name="l_name" class="form-control ms-2" placeholder="Last Name" aria-label="Last Name">
+                </div>
+                <div class="mb-3  d-flex">
+                  <input type="text" name="address" class="form-control me-2" placeholder="Address" aria-label="Address">
+                  <input type="text" name="number" class="form-control ms-2" placeholder="Number" aria-label="Number">
+                </div>
+                <div class="mb-3 d-flex">
+                  <input type="email" name="email_id" class="form-control me-2" placeholder="Email" aria-label="Email">                
+                  <input type="password" name="password" class="form-control ms-2" placeholder="Password" aria-label="Password">
+                </div>
+                <div class="mb-3 d-flex">
+                  <div class="form-check form-switch ">
+                    <input class="form-check-input mt-1 me-2" type="radio" id="navbarFixed" name="userType" onclick="navbarFixed(this)" value="Customer" required> Customer
+                  </div>
+                  <div class="form-check form-switch ms-5">
+                    <input class="form-check-input mt-1 me-2" type="radio" id="navbarFixed" name="userType" onclick="navbarFixed(this)" value="Business"> Business
+                  </div>
+                  <div class="form-check form-switch ms-5">
+                    <input class="form-check-input mt-1 me-2" type="radio" id="navbarFixed" name="userType" onclick="navbarFixed(this)" value="Management"> Management
+                  </div>
+                </div>
+                <div class="form-check form-check-info text-start">
+                  <input class="form-check-input" name="tnc" type="checkbox" value="Yes" id="flexCheckDefault" checked>
+                  <label class="form-check-label" for="flexCheckDefault">
+                    I agree the <a href="javascript:;" class="text-dark font-weight-bolder">Terms and Conditions</a>
+                  </label>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn bg-gradient-dark w-100 my-4 mb-2">Sign up</button>
+                </div>
+                <p class="text-sm mt-3 mb-0">Already have an account? <a href="{{url_for('login')}}" class="text-dark font-weight-bolder">Sign in</a></p>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
+  
+  {% endblock %}

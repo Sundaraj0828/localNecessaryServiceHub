@@ -1,0 +1,214 @@
+{% extends "core.html" %}
+{% block base2 %}
+
+{% set username = session['username'] %}
+{% set first_name = session['first_name'] %}
+{% set user_type = session['user_type'] %}
+
+   <body class="g-sidenav-show  bg-gray-100 virtual-reality">
+      <div>
+         <!-- Navbar -->
+         <nav class="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl  mt-3 mx-3 bg-primary" id="navbarBlur" data-scroll="false">
+            <div class="container-fluid py-1 px-3">
+               <nav aria-label="breadcrumb">
+                  <a class="navbar-brand m-0" href="#" target="_blank">
+                  <img src="../static/img/logo-ct.png" class="navbar-brand-img" alt="main_logo">
+                  <span class="ms-1 font-weight-bold text-white">Local Necessary Service Hub</span>
+                  </a>
+               </nav>
+               <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                  <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                     <div class="input-group">
+                        <span class="input-group-text text-body"><i class="fas fa-search" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" placeholder="Type here...">
+                     </div>
+                  </div>
+                  <ul class="navbar-nav  justify-content-end">
+                     
+                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-white p-0" id="iconNavbarSidenav">
+                           <div class="sidenav-toggler-inner">
+                              <i class="sidenav-toggler-line bg-white"></i>
+                              <i class="sidenav-toggler-line bg-white"></i>
+                              <i class="sidenav-toggler-line bg-white"></i>
+                           </div>
+                        </a>
+                     </li>
+
+                     <!-- <li class="nav-item px-3 d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-white p-0">
+                        <i class="fa fa-cog fixed-plugin-button-nav cursor-pointer"></i>
+                        </a>
+                     </li> -->
+                     <li class="nav-item  pe-2 d-flex align-items-center">
+                        <a href="javascript:;" class="nav-link text-white p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fa fa-cog cursor-pointer"></i>
+                        </a>
+                        
+                     </li>
+                     <li class="nav-item d-flex align-items-center px-3">
+                        <a href="{{url_for('sign_out')}}" class="nav-link text-white font-weight-bold px-0">
+                        <i class="fa fa-sign-out me-sm-1"></i>
+                        <!-- <span class="d-sm-inline d-none">Sign out</span> -->
+                        </a>
+                     </li>
+                     
+                  </ul>
+               </div>
+            </div>
+         </nav>
+         <!-- End Navbar -->
+      </div>
+      <div class="border-radius-xl mt-4 mx-4 position-relative" >
+         <aside class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-4 " id="sidenav-main">
+            
+            <hr class="horizontal dark mt-0">
+            <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
+               <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" href="{{url_for('home')}}">
+                      <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa fa-home text-primary text-sm opacity-10"></i>
+                      </div>
+                      <span class="nav-link-text ms-1">Homepage</span>
+                    </a>
+                  </li>
+                  {% if user_type == 'Management' %}
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{url_for('dashboard')}}">
+                      <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="fa fa-dashboard text-primary text-sm opacity-10"></i>
+                      </div>
+                      <span class="nav-link-text ms-1">Dashboard</span>
+                    </a>
+                  </li>
+                  
+                  
+                  
+                  <li class="nav-item">
+                    <a class="nav-link " href="management.html">
+                      <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+                      </div>
+                      <span class="nav-link-text ms-1">Management</span>
+                    </a>
+                  </li>
+                   
+                  {% elif user_type == 'Business' %}
+                  <li class="nav-item mt-3">
+                    <h6 class="ps-4 ms-2 text-uppercase text-xs font-weight-bolder opacity-6">Account pages</h6>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="profile.html">
+                      <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+                      </div>
+                      <span class="nav-link-text ms-1">Newspaper Vendor Profile</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="services.html">
+                      <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
+                      </div>
+                      <span class="nav-link-text ms-1">Add Services</span>
+                    </a>
+                  </li>
+                  {% elif user_type == 'Customer' %}
+                  <li class="nav-item">
+                    <a class="nav-link " href="home.html">
+                      <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+                      </div>
+                      <span class="nav-link-text ms-1">Customer Homepage</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="{{url_for('login')}}">
+                      <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-single-copy-04 text-warning text-sm opacity-10"></i>
+                      </div>
+                      <span class="nav-link-text ms-1">Sign In</span>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link " href="{{url_for('signup')}}">
+                      <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="ni ni-collection text-info text-sm opacity-10"></i>
+                      </div>
+                      <span class="nav-link-text ms-1">Sign Up</span>
+                    </a>
+                  </li>
+                  {% endif %}
+                </ul>
+            </div>
+             
+         </aside>
+         
+
+
+         {% block management_home %}{% endblock %}
+         {% block customer_home %} {% endblock %}
+
+         <footer class="footer pt-3  ">
+          <div class="container-fluid">
+            <div class="row align-items-center justify-content-lg-between">
+              <div class="col-lg-6 mb-lg-0 mb-4">
+                <div class="copyright text-center text-sm text-muted text-lg-start">
+                  © <script>
+                    document.write(new Date().getFullYear())
+                  </script>,
+                  made with <i class="fa fa-heart"></i> by
+                  <a href="#" class="font-weight-bold" target="_blank">BISSwa</a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </footer>
+   </main>
+         
+      </div>
+      
+      
+     
+      <script>
+        function currentTime() {
+            const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+            let date = new Date(); 
+            // let cDate = date.getFullYear() + '-' + (month[date.getMonth() + 1]) + '-' + date.getDate();
+            let dt = date.getDate();
+            let mmm = month[date.getMonth() + 1];
+            let yr = date.getFullYear();
+            let hh = date.getHours();
+            let mm = date.getMinutes();
+            let ss = date.getSeconds();
+            let session = "AM";
+
+            if(hh === 0){
+                hh = 12;
+            }
+            if(hh > 12){
+                hh = hh - 12;
+                session = "PM";
+            }
+
+            hh = (hh < 10) ? "0" + hh : hh;
+            mm = (mm < 10) ? "0" + mm : mm;
+            ss = (ss < 10) ? "0" + ss : ss;
+            
+            let today_date = dt + "-" + mmm + "-" + yr;
+            let time = hh + ":" + mm + ":" + ss + " " + session;
+
+            let date_time = today_date + " \xa0\xa0\xa0\xa0 " + time;
+
+            document.getElementById("clock").innerText = date_time; 
+            let t = setTimeout(function(){ currentTime() }, 1000);
+            }
+
+            currentTime();
+      </script>
+       
+   </body>
+
+   {% endblock %}
