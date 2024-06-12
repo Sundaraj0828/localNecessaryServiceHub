@@ -93,6 +93,7 @@ def login_attempt():
             session['contact_num'] = db_auth_data['number']
             session['address'] = db_auth_data['address']
             session.pop('_flashes', None)
+            session.permanent = False
         else:
             incorrect_pass_flag = True
             flash('Invalid password !! Check your password', 'error')
@@ -101,10 +102,25 @@ def login_attempt():
         flash('User not exists !! Register yourself first', 'error')
     return redirect(url_for('login'))
 
+@app.route('/')
+def home():
+    if session:
+        if session['user_type'] == 'Management':
+            return redirect(url_for('management_home'))
+        elif session['user_type'] == 'Business':
+            return redirect(url_for('business_home'))
+        elif session['user_type'] == 'Customer':
+            return redirect(url_for('customer_home'))
+        else:
+            return redirect(url_for('login'))
+    else:
+        return redirect(url_for('login'))
+
+
 @app.route('/add_category', methods=['POST'])
 def add_category():
     data = {}
-    data['category_name'] = request.form['category'].strip()
+    data['category_name'] = request.form['category'].strip().upper()
     data['category_id'] = generate_id(3, 5)
     data['category_added_date'] = datetime.now()
 
@@ -119,10 +135,12 @@ def signup():
 def management_home():
     cat_list = []
     cursor = registration_db.get_categories()
+    
 
     for i in cursor:
         cat_list.append(i)
     
+    print()
 
     return render_template('homepage_mg.html', cat = cat_list)
 
@@ -150,19 +168,7 @@ def business_home():
 def customer_home():
     return render_template('customer_home.html')
 
-@app.route('/')
-def home():
-    if session:
-        if session['user_type'] == 'Management':
-            return redirect(url_for('management_home'))
-        elif session['user_type'] == 'Business':
-            return redirect(url_for('business_home'))
-        elif session['user_type'] == 'Customer':
-            return redirect(url_for('customer_home'))
-        else:
-            return redirect(url_for('login'))
-    else:
-        return redirect(url_for('login'))
+
 
 @app.route('/register', methods=['POST'])
 def register():
@@ -215,6 +221,6 @@ def add_service():
     registration_db.create_service(form_data)
     return redirect(url_for('home'))
 
-# ========================== Logic Section ============================== 
+# ========================== End of Logic Section ============================== 
 if __name__ == '__main__':
     app.run(debug=True)

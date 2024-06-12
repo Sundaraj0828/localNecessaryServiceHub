@@ -174,11 +174,11 @@
      
       <script>
         function currentTime() {
-            const month = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+            const month = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
             let date = new Date(); 
             // let cDate = date.getFullYear() + '-' + (month[date.getMonth() + 1]) + '-' + date.getDate();
             let dt = date.getDate();
-            let mmm = month[date.getMonth() + 1];
+            let mmm = month[date.getMonth()];
             let yr = date.getFullYear();
             let hh = date.getHours();
             let mm = date.getMinutes();
