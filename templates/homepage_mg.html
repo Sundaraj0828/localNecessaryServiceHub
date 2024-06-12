@@ -34,24 +34,18 @@
                                     <small>Vendors/Individual services</small>
                                  </div>									 
                                  <div class="ms-auto">
-                                    <h1 class="text-white text-end mb-0 mt-n2">27</h1>
+                                    <h1 class="text-white text-end mb-0 mt-n2">{{cat|count}}</h1>
                                     <p class="text-sm mb-0 text-white">services</p>
                                  </div>
                                  
                               </div>
-                              <p class="text-white mb-0">A1 Newspaper Agency</p>
-                              <p class="text-white mb-0">Local Dairy Product</p>
-                              <p class="mb-0 text-white">Hemanta Fresh Fish</p>
-                              <p class="mb-0 text-white">MaRish Chicken </p>
-                              <p class="mb-0 text-white">Saroj Egg Distributor</p>
-                              <p class="mb-0 text-white">Pragyan Beauty Parlour</p>
-                              <p class="mb-0 text-white">Liquid Gym</p>
-                              <p class="mb-0 text-white">Ramu Laundry Service</p>
-                              <p class="text-white mb-0">Omfed parlour</p>
-                              <p class="mb-0 text-white">Debyani Tailor</p>
-                              <p class="mb-0 text-white">Manoj Grocery Store</p>
-                              <p class="mb-0 text-white">Apollo Pharmacy Store</p>
-                              <p class="mb-0 text-white">Avinav Homeo Clinic</p>
+                              {% for s in cat %}
+                                <p class="text-white mb-0">{{s['category_name']}}</p>
+                                
+                              {% endfor %}
+
+
+                              
 
                            </div>
                            <a href="javascript:;" class="w-100 text-center py-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show More">
@@ -111,7 +105,7 @@
                                         <div class="form-group mb-0">
                                             <form action="{{url_for('add_category')}}" method="post">
                                                 <label for="example-text-input" class="form-control-label">Name of the Category</label>
-                                                <input name="category" class="form-control mb-3" type="text" placeholder="">
+                                                <input name="category" class="form-control mb-3" type="text" placeholder="" required>
                                                 <button type="submit" class="btn btn-dark btn-sm ms-auto">Add Category</button>
                                             </form>
                                         </div>

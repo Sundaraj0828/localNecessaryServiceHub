@@ -114,7 +114,7 @@
                                                          <option value="{{i['category_id']}}">{{i['category_name']}}</option>
                                                       {% endfor %}
                                                 </select>
-                                                <button type="submit" class="btn btn-dark btn-sm ms-auto">Add Service</button>
+                                                <button type="submit" class="btn btn-dark btn-sm ms-auto mt-4">Add Service</button>
                                             </form>
                                         </div>
                                     </div>
@@ -153,30 +153,28 @@
                    <div class="col-lg-4 col-md-4">
                       <div class="card move-on-hover overflow-hidden">
                         <div class="card-header border-bottom">
-                            <h5>Service Requests</h5>
-                            <small>Pending registration requests from vendors and individual service provider</small>
+                            <h5>Business Owner details</h5>
+                            <!-- <small>Pending registration requests from vendors and individual service provider</small> -->
                         </div>
                          <div class="card-body">
                             <div class="row">
                                 <div class="col-10">
-                                    <p class="mb-0 me-3">15-Mar-2023</p>
-                                    <h6 class="mb-0">Soumya Ranjan
-                                    <small class="text-secondary font-weight-normal">service 1</small>
-                                    </h6>
+                                    <p class="mb-0 me-3">Name : <b>{{username}}</b></p>
+                                    <p class="mb-0">Address : <b>{{user_location}}</b></p>
+                                    <p class="mb-0">User Id : <b>{{session['user_id']}}</b></p>
                                 </div>
-                                <div class="col-2 text-end">
+                                <!-- <div class="col-2 text-end">
                                     <button class="btn btn-icon-only btn-rounded btn-success btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-info"></i></button>
                                                                             
-                                </div>
+                                </div> -->
                                
                             </div>
                             <hr class="horizontal dark">
                             <div class="row">
                                 <div class="col-10">
-                                    <p class="mb-0 me-3">3-Mar-2023</p>
-                                    <h6 class="mb-0">Rohit Dhawan
-                                        <small class="text-secondary font-weight-normal">Service 2</small>
-                                    </h6>
+                                 <p class="mb-0 me-3">Contact : <b>{{session['contact_num']}}</b></p>
+                                 <p class="mb-0">Email : <b>{{session['email']}}</b></p>
+                                 <!-- <p class="mb-0">User Id : <b>{{session['user_id']}}</b></p> -->
                                 </div>
                                 <div class="col-2 text-end">
                                     <button class="btn btn-icon-only btn-rounded btn-success btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-info"></i></button>
