@@ -97,8 +97,8 @@
                         <div class="card bg bg-gradient-primary move-on-hover ">
                            <div class="cursor-pointer">                                      
                               <div class="card-body">
-                                 <h4 class="mb-0 text-white">Add a Service</h4>
-                                 <p class="text-sm text-light">Add different vendors or individual srvice Category </p>
+                                 <h4 class="mb-0 text-white">Add Product(s)/Service(s)</h4>
+                                 <p class="text-sm text-light">Add Stores or services or products </p>
                                   
                                 
                                 <div class="row">
@@ -163,38 +163,22 @@
                                     <p class="mb-0">Address : <b>{{user_location}}</b></p>
                                     <p class="mb-0">User Id : <b>{{session['user_id']}}</b></p>
                                 </div>
-                                <!-- <div class="col-2 text-end">
-                                    <button class="btn btn-icon-only btn-rounded btn-success btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-info"></i></button>
-                                                                            
-                                </div> -->
+                                 
                                
                             </div>
                             <hr class="horizontal dark">
                             <div class="row">
                                 <div class="col-10">
                                  <p class="mb-0 me-3">Contact : <b>{{session['contact_num']}}</b></p>
-                                 <p class="mb-0">Email : <b>{{session['email']}}</b></p>
+                                 <p class="mb-0">Email : <b>{{session['user_email']}}</b></p>
                                  <!-- <p class="mb-0">User Id : <b>{{session['user_id']}}</b></p> -->
                                 </div>
-                                <div class="col-2 text-end">
-                                    <button class="btn btn-icon-only btn-rounded btn-success btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-info"></i></button>
-                                                                            
-                                </div>
+                                
                                
                             </div>
                             <hr class="horizontal dark">
                             <div class="row">
-                                <div class="col-10">
-                                    <p class="mb-0 me-3">3-Mar-2023</p>
-                                    <h6 class="mb-0">Rohit Dhawan
-                                        <small class="text-secondary font-weight-normal">Service 2</small>
-                                    </h6>
-                                </div>
-                                <div class="col-2 text-end">
-                                    <button class="btn btn-icon-only btn-rounded btn-success btn-sm d-flex align-items-center justify-content-center me-2" title="Accept"><i class="fas fa-info"></i></button>
-                                                                            
-                                </div>
-                               
+                              <a href="{{url_for('edit_profile')}}" class="btn btn-dark btn-sm ms-auto mt-4">Edit Profile</a>                 
                             </div>
                             
                          </div>
