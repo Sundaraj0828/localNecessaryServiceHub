@@ -37,6 +37,11 @@
                     Don't have an account?
                     <a href="{{url_for('signup')}}" class="text-primary text-gradient font-weight-bold">Sign up</a>
                   </p>
+                  <div class="flashes">
+                    {% for msg in get_flashed_messages() %}
+                      <h4{{msg}}></h4>
+                    {% endfor %}
+                  </div>
                 </div>
               </div>
             </div>

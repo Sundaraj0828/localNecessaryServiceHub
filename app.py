@@ -1,6 +1,8 @@
-from flask import Flask, redirect, render_template, url_for, request, flash, session
+from flask import Flask, redirect, render_template, url_for, request, flash, session, Response
 from functools import wraps
 from passlib.hash import sha256_crypt
+
+
 
 
 import random
@@ -51,11 +53,13 @@ def login_required(f):
       return redirect(url_for('login'))
   return wrap
 
-@app.route("/sign_out/")
+@app.route("/sign_out")
 @login_required
 def sign_out():
     session.clear()
-    return redirect(url_for('login'))
+    response = Response()
+    response.cache_control.s_maxage = 1
+    return redirect(url_for('home'))
 
 @app.route('/signin/')
 def login():
@@ -104,15 +108,21 @@ def login_attempt():
 
 @app.route('/')
 def home():
-    if session:
-        if session['user_type'] == 'Management':
-            return redirect(url_for('management_home'))
-        elif session['user_type'] == 'Business':
-            return redirect(url_for('business_home'))
-        elif session['user_type'] == 'Customer':
-            return redirect(url_for('customer_home'))
+    try:
+        if session:
+            if session['user_type'] == 'Management':
+                return redirect(url_for('management_home'))
+            elif session['user_type'] == 'Business':
+                return redirect(url_for('business_home'))
+            elif session['user_type'] == 'Customer':
+                return redirect(url_for('customer_home'))
+            else:
+                return redirect(url_for('login'))
         else:
             return redirect(url_for('login'))
+    except:
+        flash("Login ")
+        return redirect(url_for('login'))
     else:
         return redirect(url_for('login'))
 
@@ -156,13 +166,19 @@ def business_home():
 
     for i in cursor:
         cat_list.append(i)
-
-    cursor_services = registration_db.get_services(session['user_id'])
-    for c in cursor_services:
-        service_list.append(c)
-    
-    service_count = len(service_list)
-    return render_template('business_home.html', cat = cat_list, services = service_list, s_count = service_count)
+    try:
+        cursor_services = registration_db.get_services(session['user_id'])
+    except Exception as e:
+        print(e)
+        msg = "Session Expired"
+        flash(msg)
+        return redirect(url_for("error_page"))
+    else:        
+        for c in cursor_services:
+            service_list.append(c)
+        
+        service_count = len(service_list)
+        return render_template('business_home.html', cat = cat_list, services = service_list, s_count = service_count)
 
 @app.route('/customer_home')
 def customer_home():
@@ -208,6 +224,10 @@ def delete_category(cid):
     registration_db.delete_cat(cid)
     return redirect(url_for('home'))
 
+@app.route("/error_page")
+def error_page():
+    return render_template('error_page.html')
+
 @app.route('/add_service', methods=['POST'])
 def add_service():
     form_data = {}
@@ -216,9 +236,13 @@ def add_service():
     form_data['category'] = request.form['category']
     form_data['service_id'] = generate_id_with_fixedChars('LNS-S-', 5)
     form_data['service_added_date'] = datetime.now()
-    form_data['user_id'] = session['user_id']
-
-    registration_db.create_service(form_data)
+    try:
+        form_data['user_id'] = session['user_id']
+    except Exception as e:
+        print(e.args)
+        flash("Session Expired!! To add service, login first")
+        return redirect(url_for("error_page"))
+    
     return redirect(url_for('home'))
 
 # ========================== End of Logic Section ============================== 
