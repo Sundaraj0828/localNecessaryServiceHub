@@ -1,0 +1,167 @@
+{% extends "base2.html" %}
+{% block management_home %}
+
+{% set username = session['username'] %}
+{% set first_name = session['first_name'] %}
+{% set user_type = session['user_type'] %}
+{% set user_location = session['address'] %}
+{% set user_id = session['user_id'] %}
+{% set email = session['user_email'] %}
+{% set number = session['contact_num'] %}
+
+
+<main class="main-content mt-1 border-radius-lg">
+  	<div class="section position-relative">
+		<div class="container">
+			<div class="row pt-7">
+				<div class="col-lg-8 col-md-8">
+					<h5 class="text-uppercase mb-0 ms-1">{{username}}</h5>
+                    <p class=" mb-0 ms-1">{{user_location}}</p>
+					
+					<div class="border border-warning rounded py-3 px-4 text-dark d-flex align-items-center" role="alert">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="text-warning bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+						  <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+						</svg>
+						<div class="text-muted"><small>You are not a verified Business Owner/Service Provider </small></div>
+					</div>
+					
+					
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<div class="card bg-dark">
+						<div class="card-body">
+							<h6 class="text-warning">{{user_type}} Account</h6>
+							<h4 class="text-light">ID - {{user_id}}</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row pt-4">
+				<div class="col-lg-8 col-md-8">
+					<div class="card">
+						<!-- <div class="card-header pb-0">
+						  <div class="d-flex align-items-center">
+							<p class="mb-0">Update Profile details</p>
+							<button class="btn btn-primary btn-sm ms-auto">Settings</button>
+						  </div>
+						</div> -->
+						<div class="card-body">
+						  <p class="text-uppercase text-sm">Basic Information</p>
+						  <form method="post" action="">
+						  <div class="row">							
+							<div class="col-md-6">
+							  <div class="form-group">
+								<label for="example-text-input" class="form-control-label">First Name</label>
+								<input class="form-control" type="text" name="fname" value="{{user[0]['f_name']}}" required>
+							  </div>
+							</div>
+							<div class="col-md-6">
+								<div class="form-group">
+								  <label for="example-text-input" class="form-control-label">Last Name</label>
+								  <input class="form-control" type="text" name="lname" value="{{user[0]['l_name']}}" required>
+								</div>
+							  </div>
+							<div class="col-md-6">
+							  <div class="form-group">
+								<label for="example-text-input" class="form-control-label">Address</label>
+								<input class="form-control" type="text" name="address" value="{{user[0]['address']}}" required>
+							  </div>
+							</div>
+							<div class="col-md-6">
+							  <div class="form-group">
+								<label for="example-text-input" class="form-control-label">Contact Number</label>
+								<input class="form-control" type="number" name="number" value="{{user[0]['number']}}" required>
+							  </div>
+							</div>
+							<div class="col-md-6">
+								<a type="submit" class="btn btn-primary btn-sm ms-auto">Update</a>
+							</div>
+							
+						  </div>
+							</form>
+						  <!-- <hr class="horizontal dark"> -->
+						</div>
+					</div>
+				
+					<div class="card mt-4">
+						<div class="card-body">
+						  <p class="text-uppercase text-sm">Complete Information</p>
+						  <form method="post">
+						  <div class="row">
+							<div class="col-md-4">
+							  <div class="form-group">
+								<label for="example-text-input" class="form-control-label">Secondary Number</label>
+								<input class="form-control" type="number" name="sec_number"  placeholder="Enter Secondary Number">
+							  </div>
+							</div>
+							<div class="col-md-4">
+								<div class="form-group">
+								  <label for="example-text-input" class="form-control-label">AADHAR Number</label>
+								  <input class="form-control" type="text" name="aadhar" placeholder="Enter your Aadhar Number" >
+								</div>
+							  </div>
+							<div class="col-md-4">
+							  <div class="form-group">
+								<label for="example-text-input" class="form-control-label">PAN Number</label>
+								<input class="form-control" type="text" name="pan" placeholder="Enter your PAN Number" >
+							  </div>
+							</div>
+							<div class="col-md-12">
+
+							</div>
+							
+							<div class="col-md-12">
+							  <div class="form-group">
+								<label for="example-text-input" class="form-control-label">Name of Business / Store / Service</label>
+								<input class="form-control" type="text" name="business_name" placeholder="Enter Business/Store/Service name" required>
+							  </div>
+							</div>
+						  
+						  <!-- <hr class="horizontal dark"> -->
+							<div class="col-md-12">
+							  <div class="form-group">
+								<label for="example-text-input" class="form-control-label">About business/service</label>
+								<textarea class="form-control" rows="3" name="business_desc" placeholder="Describe your business/service" minlength="100"></textarea>
+							  </div>
+							</div>
+							<div class="col-md-12">
+								<button type="submit" class="btn btn-primary btn-sm ms-auto" value="Submit">Submit</button>
+							</div>
+						  </div>
+						</form>
+						</div>
+					  </div>
+				</div>
+				<div class="col-lg-4 col-md-4">
+					<div class="card card-profile">
+						<img src="../static/img/bg-profile.jpg" alt="Image placeholder" class="card-img-top">
+						<div class="row justify-content-center">
+						  <div class="col-4 col-lg-4 order-lg-2">
+							<div class="mt-n4 mt-lg-n6 mb-4 mb-lg-0">
+							  <a href="javascript:;">
+								<img src="../static/img/team-2.jpg" class="rounded-circle img-fluid border border-2 border-white">
+							  </a>
+							</div>
+						  </div>
+						</div>
+						<div class="card-body pt-0">
+							<h5 class="card-title">{{username}}</h5>
+						  	<div class="mt-4">
+								<div class="h6 font-weight-300">
+									<i class="ni ni-email-83 mr-2"></i> {{email}}
+								</div>								
+								<div class="h6 font-weight-300">
+								<i class="ni ni-mobile-button mr-2"></i> {{number}}
+								</div>
+						  	</div>
+						</div>
+					  </div>
+				</div>
+			</div>
+		</div>
+  	</div>
+</main>
+
+
+{% endblock %}

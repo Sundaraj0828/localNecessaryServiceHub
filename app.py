@@ -107,6 +107,7 @@ def login_attempt():
     return redirect(url_for('login'))
 
 @app.route('/')
+# @login_required
 def home():
     try:
         if session:
@@ -126,37 +127,60 @@ def home():
     else:
         return redirect(url_for('login'))
 
-
+# add service catagory
 @app.route('/add_category', methods=['POST'])
 def add_category():
     data = {}
-    data['category_name'] = request.form['category'].strip().upper()
-    data['category_id'] = generate_id(3, 5)
+    cname = request.form['category'].strip().upper()
+    name_chars = cname[:3:2]
+    data['category_name'] = cname
+    data['category_id'] = generate_id_with_fixedChars(name_chars, 5)
     data['category_added_date'] = datetime.now()
 
     registration_db.save_category(data)
     return redirect(url_for('home'))
 
+# add service location center point
+@app.route('/add_location_centers', methods=['POST'])
+def add_location_centers():
+    data = {}
+    lname = request.form['location_center'].strip().upper()
+    name_chars = lname[:3:2]
+    data['location'] = lname
+    data['location_id'] = generate_id_with_fixedChars(name_chars, 5)
+    data['location_added_date'] = datetime.now()
+
+    registration_db.save_location_center_point(data)
+    return redirect(url_for('home'))
+
+@app.route('/view_all_service_categories')
+def view_all_service_categories():
+    category_list = []
+    cursor = registration_db.get_categories()
+    for i in cursor:
+        category_list.append(i)
+    
+    return render_template('service_categories.html', cat = category_list)
+
 @app.route('/signup')
 def signup():
     return render_template('sign-up.html')
 
-@app.route('/management_home')
-def management_home():
-    cat_list = []
-    cursor = registration_db.get_categories()
-    
-
-    for i in cursor:
-        cat_list.append(i)
-    
-    print()
-
-    return render_template('homepage_mg.html', cat = cat_list)
-
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
+
+@app.route('/management_home')
+def management_home():
+    cat_list = []
+    location_list = []
+    cursor = registration_db.get_categories()
+    cursor2 = registration_db.get_all_locations()
+    for i in cursor:
+        cat_list.append(i)
+    for l in cursor2:
+        location_list.append(l)
+    return render_template('homepage_mg.html', cat = cat_list, loc = location_list)
 
 @app.route('/business_home')
 def business_home():
@@ -184,8 +208,6 @@ def business_home():
 def customer_home():
     return render_template('customer_home.html')
 
-
-
 @app.route('/register', methods=['POST'])
 def register():
     user_data = []
@@ -195,6 +217,7 @@ def register():
     cursor = registration_db.get_registered_users(email)
     for i in cursor:
         user_data.append(i)
+        
     if len(user_data):
         print('user exist')
         return redirect(url_for('signup'))
@@ -212,7 +235,6 @@ def register():
         
         registration_db.save_user(data)
 
-
         return redirect(url_for('login'))
 
 # app.route('/')
@@ -222,6 +244,11 @@ def register():
 @app.route('/delete_category/<cid>')
 def delete_category(cid):
     registration_db.delete_cat(cid)
+    return redirect(url_for('home'))
+
+@app.route('/delete_location/<loc_id>')
+def delete_location(loc_id):
+    registration_db.delete_location(loc_id)
     return redirect(url_for('home'))
 
 @app.route("/error_page")
@@ -244,6 +271,25 @@ def add_service():
         return redirect(url_for("error_page"))
     
     return redirect(url_for('home'))
+
+@login_required
+@app.route('/profile')
+def profile():
+    user = []
+    category_list = []
+    email = session['user_email']    
+    cursor = registration_db.get_registered_users(email)
+    for i in cursor:
+        user.append(i)
+        
+    cat_cursor = registration_db.get_categories()
+    for c in cat_cursor:
+        category_list.append(c)
+        
+    
+    
+    
+    return render_template('profile.html', user = user, cat = category_list)
 
 # ========================== End of Logic Section ============================== 
 if __name__ == '__main__':
