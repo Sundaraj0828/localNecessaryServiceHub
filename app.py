@@ -95,7 +95,8 @@ def login_attempt():
             session['user_type'] = db_auth_data['user_type']
             session['user_id'] = db_auth_data['user_id']
             session['contact_num'] = db_auth_data['number']
-            session['address'] = db_auth_data['address']
+            session['address'] = db_auth_data['address']  
+            session['flag'] = '' 
             session.pop('_flashes', None)
             session.permanent = False
         else:
@@ -112,10 +113,13 @@ def home():
     try:
         if session:
             if session['user_type'] == 'Management':
+                session['flag'] = 'Management'
                 return redirect(url_for('management_home'))
             elif session['user_type'] == 'Business':
+                session['flag'] = 'Business'
                 return redirect(url_for('business_home'))
             elif session['user_type'] == 'Customer':
+                session['flag'] = 'Customer'
                 return redirect(url_for('customer_home'))
             else:
                 return redirect(url_for('login'))
@@ -126,6 +130,8 @@ def home():
         return redirect(url_for('login'))
     else:
         return redirect(url_for('login'))
+
+
 
 # add service catagory
 @app.route('/add_category', methods=['POST'])
@@ -155,10 +161,14 @@ def add_location_centers():
 
 @app.route('/view_all_service_categories')
 def view_all_service_categories():
+    session['flag'] = 'services'
     category_list = []
     cursor = registration_db.get_categories()
     for i in cursor:
+        i['category_added_date'] = i['category_added_date'].strftime('%d-%b-%Y')
         category_list.append(i)
+
+    
     
     return render_template('service_categories.html', cat = category_list)
 
@@ -168,6 +178,7 @@ def signup():
 
 @app.route('/dashboard')
 def dashboard():
+    session['flag'] = 'dashboard'
     return render_template('dashboard.html')
 
 @app.route('/management_home')

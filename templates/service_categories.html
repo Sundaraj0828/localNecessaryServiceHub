@@ -15,7 +15,7 @@
                 <div class="d-flex">
                    <div class="me-auto">                            
                     <h5 class="text-uppercase mb-0 ms-1">Welcome, {{first_name}}</h5>
-                    <p class=" mb-0 ms-1">Check all service categories added </p>
+                    <p class=" mb-0 ms-1">Check all added service categories </p>
                    </div>
                    <div class="ms-auto d-flex bg bg-dark  card">
                     <div class="card-body d-flex">
@@ -24,16 +24,61 @@
                 </div>
                    </div>
                 </div>
-                <div class="row mt-4">
-                    <div class="col-lg-4">
-                     <ul>
-                        {% for i in cat|sort(attribute="category_added_date") %}
-                           <li>{{loop.index}} : {{i['category_name']}}</li>
-                        {% endfor %}
-                     </ul>
-                    </div>
-                    <div class="col-lg-8 bg-secondary">
-
+                 
+                  <div class="row mt-4">
+                    <div class="col-lg-12">
+                     <div class="card mb-4">
+                        <div class="card-header pb-0">
+                          <h6>Service Categories</h6>
+                        </div>
+                        <div class="card-body px-0 pt-0 pb-2">
+                          <div class="table-responsive p-0">
+                            <table class="table align-items-center mb-0">
+                              <thead>
+                                <tr>
+                                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#</th>
+                                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Service Id</th>
+                                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Service Name</th>
+                                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Description</th>
+                                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Added Date</th>
+                                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                 {% for i in cat|sort(attribute="category_added_date") %}
+                                <tr>
+                                  <td class="align-middle text-center">
+                                    {{loop.index}}
+                                  </td>
+                                  <td>
+                                    <span class="badge badge-sm bg-gradient-info">{{i['category_id']}}</span>
+                                  </td>
+                                  <td class="align-middle text-sm">
+                                    <p class="text-xs font-weight-bold mb-0">{{i['category_name']}}</p>
+                                    
+                                  </td>
+                                  <td class="align-middle">
+                                    <p class="text-secondary text-xs font-weight-bold">the washing of clothing and other textiles, and, more broadly, their drying and ironing as well.</p>
+                                  </td>
+                                  <td class="align-middle text-center">
+                                    <span class="text-secondary text-xs font-weight-bold">{{i['category_added_date']}}</span>
+                                  </td>
+                                  <td class="align-middle">
+                                    <a href="" class="btn btn-link mb-0" aria-haspopup="true" aria-expanded="false">
+                                       <i class="far fa-edit text-success"></i>
+                                    </a>
+                                    <a href="" class="btn btn-link mb-0" aria-haspopup="true" aria-expanded="false">
+                                       <i class="fas fa-minus-circle text-danger"></i>
+                                    </a>
+                                  </td>
+                                </tr>
+                                {% endfor %}
+                               
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                    
                 </div>

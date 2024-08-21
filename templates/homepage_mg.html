@@ -55,15 +55,16 @@
                                      <div class="card rounded bg bg-gradient-dark mb-3">
                                          <div class="card-body p-2">
                                            <div class="row">
-                                             <div class="col-9">
+                                             <div class="col-10">
                                                <div class="numbers">
                                                  <h6 class="mb-0 text-light">{{l['location']}}</h6>
                                                  
                                                </div>
                                              </div>
-                                             <div class="col-3  text-end mr-0">
-                                                 <a href="{{url_for('delete_location', loc_id = l['location_id'])}}" class="btn btn-icon-only btn-rounded btn-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center "><i class="fas fa-times"></i></a>
-                                                 
+                                             <div class="col-2 text-end mr-0">
+                                                 <a href="{{url_for('delete_location', loc_id = l['location_id'])}}" class="btn btn-icon-only btn-rounded btn-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center ">
+                                                   <i class="fas fa-times"></i>
+                                                </a>                                                 
                                              </div>
                                            </div>
                                          </div>
@@ -124,7 +125,8 @@
                                         <div class="form-group mb-0">
                                             <form action="{{url_for('add_category')}}" method="post">
                                                 <label for="example-text-input" class="form-control-label">Name of the Category</label>
-                                                <input name="category" class="form-control mb-3" type="text" placeholder="" required>
+                                                <input name="category" class="form-control mb-3" type="text" placeholder="Service Category" required>
+                                                <textarea name="desc_category" rows="3" maxlength="250" class="form-control mb-3" placeholder="Describe the service category" required></textarea>
                                                 <button type="submit" class="btn btn-dark btn-sm ms-auto">Add Category</button>
                                             </form>
                                         </div>
@@ -141,13 +143,13 @@
                                         <div class="card rounded bg bg-gradient-dark mb-3">
                                             <div class="card-body p-2">
                                               <div class="row">
-                                                <div class="col-9">
+                                                <div class="col-10">
                                                   <div class="numbers">
                                                     <h6 class="mb-0 text-light">{{i['category_name']}}</h6>
                                                     
                                                   </div>
                                                 </div>
-                                                <div class="col-3  text-end mr-0">
+                                                <div class="col-2 text-end mr-0">
                                                     <a href="{{url_for('delete_category', cid = i['category_id'])}}" class="btn btn-icon-only btn-rounded btn-danger mb-0 me-3 btn-sm d-flex align-items-center justify-content-center "><i class="fas fa-times"></i></a>
                                                     
                                                 </div>
@@ -184,7 +186,7 @@
 
                            </div>
                            <a href="{{url_for('view_all_service_categories')}}" class="w-100 text-center py-1" data-bs-toggle="tooltip" data-bs-placement="top" title="Show More">
-                           Show More <i class="fas fa-eye text-white"></i>
+                            <i class="fas fa-chevron-down text-white"></i>
                            </a>
                         </div>
 
