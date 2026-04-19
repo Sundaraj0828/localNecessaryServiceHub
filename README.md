@@ -90,4 +90,4 @@ Distributed under the MIT License.
 
 ---
 
-**Developed with ❤️ by [Sundaraj0828]**
+**Developed with ❤️ by [L.C.Sundaraj](https://github.com/Sundaraj0828)**
