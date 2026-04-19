@@ -8,7 +8,7 @@ def configure_db():
     global col_msgInfo
 
     ca = certifi.where()
-    con = MongoClient('mongodb+srv://ranjanmohantamanas1:LdrQ8ad2EdaGejRh@cluster0.tu8wzkx.mongodb.net/?retryWrites=true&w=majority', tlsCAFile = ca)           
+    con = MongoClient('')           
     db_msg = con.config_data_DB
     col_msgInfo = db_msg.sms_config
 
