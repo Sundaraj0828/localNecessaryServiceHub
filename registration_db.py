@@ -14,7 +14,7 @@ def configure_db():
     global col_locations
 
     ca = certifi.where()
-    con = MongoClient('mongodb+srv://sraj81791sm:uRpvwRRSY3dgnZnI@cluster0.wlq2tfi.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', tlsCAFile = ca)     
+    con = MongoClient('')     
     
     db_user = con.user_db
     col_user = db_user.users
